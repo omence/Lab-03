@@ -1,0 +1,48 @@
+header { font-size: 40px;
+    text-align: center;
+    color: rgb(145, 45, 100);
+    font-family: 'Ubuntu', sans-serif;
+  }
+  body {
+    background-image: linear-gradient(-90deg, rgb(35, 35, 194), rgb(182, 158, 85));
+  }
+  
+  aside, section article, div{
+    box-sizing: border-box;
+    outline: .5px solid #111111;
+    outline-offset: -2px;
+    text-align: center;
+    background-color: none;
+    border-collapse: collapse;
+    float: left;
+  }
+  
+  img {
+    width: 230px;
+    height: 230px;
+    margin: 20px;
+    border: 1px solid black; 
+    }
+    
+  section {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    }
+  
+  h2 {
+    font-size: 40px;
+    text-align: center;
+    color: rgb(45, 57, 145);
+    font-family: 'Ubuntu', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    }
+    
+  footer {
+    margin-top: 20px;
+    background-color: rgb(192, 6, 6);
+    width: 100%;
+    bottom: 0;
+    position: relative;
+    float: right;
+    text-align: center;
+    }
