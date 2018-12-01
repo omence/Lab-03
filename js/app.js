@@ -13,18 +13,22 @@ Horn.allHorns = [];
 console.log(Horn.allHorns);
 let keyArr = [];
 console.log(keyArr);
-
+let UniqueKeyArr = [];
+console.log(UniqueKeyArr);
 Horn.prototype.render = function() {
   const $template = $('#hornsTem').html();
   const $source = Handlebars.compile($template);
   return $source(this);
 };
 
-
-
+function makeNewarr() {
+  var uniArr = [...new Set(keyArr)];
+  UniqueKeyArr.push(uniArr);
+}
+makeNewarr
 
 let selectRend = () => {
-  keyArr.forEach( element => {
+  UniqueKeyArr[0].forEach( element => {
     $('select').append('<option class="optClone"></option>');
     console.log(element);
     let optionClone = $('option[class="optClone"]');
@@ -42,7 +46,7 @@ Horn.readJson = (page) => {
         Horn.allHorns.push(new Horn(obj));
       });
     })
-    .then(Horn.loadHorns).then(selectRend);
+    .then(Horn.loadHorns).then(makeNewarr).then(selectRend);
 };
 
 Horn.loadHorns = () => {
@@ -76,7 +80,10 @@ $('#pg1').click(function(){
   $(() => Horn.readJson('data/page-1.json'));
 });
 
-// $('#titleBut').click(function(){
-//  Horn.allHorns.sort();
+
+
+$('titleBut').click(function(){
+  location.reload();
+  Horn.allHorns.sort();
  
-// });
+});
