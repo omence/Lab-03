@@ -21,6 +21,7 @@ Horn.prototype.render = function() {
   return $source(this);
 };
 
+var page = 'data/page-1.json';
 function makeNewarr() {
   var uniArr = [...new Set(keyArr)];
   UniqueKeyArr.push(uniArr);
@@ -36,7 +37,6 @@ let selectRend = () => {
     optionClone.removeClass('optClone');
   });
 };
-//var page = 'data/page-1.json';
 
 
 Horn.readJson = (page) => {
@@ -55,7 +55,7 @@ Horn.loadHorns = () => {
   });
 };
 
-$(() => Horn.readJson('data/page-1.json'));
+$(() => Horn.readJson(page));
 
 $('select').on('change',selShow);
 function selShow(){
@@ -65,25 +65,33 @@ function selShow(){
 }
 
 $('#pg2').click(function(){
+  page = 'data/page-2.json';
   $('div').remove();
   $('option').remove();
   Horn.allHorns = [];
   keyArr = [];
-  $(() => Horn.readJson('data/page-2.json'));
+  $(() => Horn.readJson(page));
 });
 
 $('#pg1').click(function(){
+  page = 'data/page-1.json';
   $('div').remove();
   $('option').remove();
   Horn.allHorns = [];
   keyArr = [];
-  $(() => Horn.readJson('data/page-1.json'));
+  $(() => Horn.readJson(page));
 });
 
+$('#titleBut').click(function(){
+  $('div').remove();
+  Horn.allHorns.sort(function(a, b) {
+    return a.title.localeCompare(b.title);
+ });
+  $(() => Horn.readJson(page));
+});
 
-
-$('titleBut').click(function(){
-  location.reload();
-  Horn.allHorns.sort();
- 
+$('#hornBut').click(function(){
+  $('div').remove();
+  Horn.allHorns.sort( function ( a, b ) { return b.horns - a.horns; } );
+  $(() => Horn.readJson(page));
 });
