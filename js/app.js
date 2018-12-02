@@ -22,11 +22,11 @@ Horn.prototype.render = function() {
 };
 
 var page = 'data/page-1.json';
+
 function makeNewarr() {
   var uniArr = [...new Set(keyArr)];
   UniqueKeyArr.push(uniArr);
 }
-makeNewarr
 
 let selectRend = () => {
   UniqueKeyArr[0].forEach( element => {
@@ -69,6 +69,7 @@ $('#pg2').click(function(){
   $('div').remove();
   $('option').remove();
   Horn.allHorns = [];
+  UniqueKeyArr = [];
   keyArr = [];
   $(() => Horn.readJson(page));
 });
@@ -78,20 +79,33 @@ $('#pg1').click(function(){
   $('div').remove();
   $('option').remove();
   Horn.allHorns = [];
+  UniqueKeyArr = [];
   keyArr = [];
   $(() => Horn.readJson(page));
 });
 
 $('#titleBut').click(function(){
   $('div').remove();
+  UniqueKeyArr[0] = [];
   Horn.allHorns.sort(function(a, b) {
     return a.title.localeCompare(b.title);
- });
-  $(() => Horn.readJson(page));
+  });
+  $('select').remove();
+  $('#pg1').remove();
+  $('#pg2').remove();
+  Horn.loadHorns();
 });
 
 $('#hornBut').click(function(){
   $('div').remove();
+  UniqueKeyArr[0] = [];
   Horn.allHorns.sort( function ( a, b ) { return b.horns - a.horns; } );
-  $(() => Horn.readJson(page));
+  $('select').remove();
+  $('#pg1').remove();
+  $('#pg2').remove();
+  Horn.loadHorns();
+});
+
+$('#home').click(function(){
+  location.reload();
 });
